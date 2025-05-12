@@ -1,4 +1,5 @@
-<?php include_once("../views/header.php")?>
+<?php include_once("../views/header.php");
+include("../controllers/LocalisationController.php")?>
 
 <div class="flex flex-col items-center">
 
