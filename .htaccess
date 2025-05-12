@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteBase /
+
+# Ne pas réécrire les fichiers et dossiers existants
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Rediriger toutes les requêtes vers index.php avec le paramètre 'route'
+RewriteRule ^(.*)$ public/index.php?route=$1 [L,QSA]
