@@ -1,36 +1,109 @@
-<?php include_once("../views/header.php");
-include("../controllers/LocalisationController.php")?>
+<?php
+
+/**
+ * ETML
+ * Auteur: Dany Carneiro Jeremias
+ * Date: 12.05.2025
+ * Description: Page d'accueil indiquant la météo et la qualité de l'air de la zone approximative récupérée grâce à l'adresse IP
+ */
+
+include_once("../views/header.php");
+?>
 
 <div class="flex flex-col items-center">
 
-    <h2 class="text-2xl md:text-3xl p-4">Qualité de l'air à Lausanne</h2>
+    <h2 class="text-2xl md:text-3xl p-4">Qualité de l'air à <?php echo $userCoordinates['city']['name'] ?></h2>
 
     <div class="w-9/10 md:w-auto border rounded-lg p-6">
-        <p class="bg-[#E9D92C] rounded-lg p-1 text-xl w-fit justify-self-center">IQA : 60 (Modéré)</p>
+        <?php if ($info['air']['european_aqi'] <= 50): ?>
+            <p class="bg-[#69A33D] rounded-lg p-1 text-xl w-fit justify-self-center">IQA : <?php echo $info['air']['european_aqi'] ?> (Bon)</p>
+        <?php elseif ($info['air']['european_aqi'] <= 100): ?>
+            <p class="bg-[#E9D92C] rounded-lg p-1 text-xl w-fit justify-self-center">IQA : <?php echo $info['air']['european_aqi'] ?> (Modéré)</p>
+        <?php elseif ($info['air']['european_aqi'] <= 150): ?>
+            <p class="bg-[#EA6C29] rounded-lg p-1 text-xl w-fit justify-self-center">IQA : <?php echo $info['air']['european_aqi'] ?> (Pas bon)</p>
+        <?php elseif ($info['air']['european_aqi'] <= 200): ?>
+            <p class="bg-[#F01F1F] rounded-lg p-1 text-xl w-fit justify-self-center">IQA : <?php echo $info['air']['european_aqi'] ?> (Mauvais)</p>
+        <?php elseif ($info['air']['european_aqi'] <= 300): ?>
+            <p class="bg-[#AA24CC] rounded-lg p-1 text-xl w-fit justify-self-center">IQA : <?php echo $info['air']['european_aqi'] ?> (Très mauvais)</p>
+        <?php else : ?>
+            <p class="rounded-lg p-1 text-xl w-fit justify-self-center">Donnée non disponible</p>
+        <?php endif;?>
+
 
         <div class="grid grid-cols-2 grid-rows-2 md:flex mt-5 place-items-center">
 
-            <?php for ($i = 0; $i < 4; $i++) : ?>
-
-            <div class="size-25 md:size-35 bg-[#E9D92C] rounded-full m-2">
+            <?php if ($info['air']['pm2_5'] <= 10) : ?>
+                <div class="size-25 md:size-35 bg-[#69A33D] rounded-full m-2">
+            <?php elseif ($info['air']['pm2_5'] <= 25) : ?>
+                <div class="size-25 md:size-35 bg-[#E9D92C] rounded-full m-2">
+            <?php elseif ($info['air']['pm2_5'] <= 50) : ?> 
+                <div class="size-25 md:size-35 bg-[#EA6C29] rounded-full m-2"></div>
+            <?php elseif ($info['air']['pm2_5'] <= 75) : ?> 
+                <div class="size-25 md:size-35 bg-[#F01F1F] rounded-full m-2"></div>
+            <?php elseif ($info['air']['pm2_5'] > 75) : ?> 
+                <div class="size-25 md:size-35 bg-[#AA24CC] rounded-full m-2"></div>
+            <?php endif ?>
                 <p class="text-center pt-4 text-lg md:text-2xl font-semibold">PM 2.5</p>
-                <p class="text-center md:pt-4 text-lg md:text-2xl">24.6µg/m3</p>
+                <p class="text-center md:pt-4 text-lg md:text-2xl"><?php echo $info['air']['pm2_5'] ?> µg/m3</p>
             </div>
 
-            <?php endfor;   ?>
+            <?php if ($info['air']['pm10'] <= 20) : ?>
+                <div class="size-25 md:size-35 bg-[#69A33D] rounded-full m-2">
+            <?php elseif ($info['air']['pm10'] <= 50) : ?>
+                <div class="size-25 md:size-35 bg-[#E9D92C] rounded-full m-2">
+            <?php elseif ($info['air']['pm10'] <= 100) : ?> 
+                <div class="size-25 md:size-35 bg-[#EA6C29] rounded-full m-2"></div>
+            <?php elseif ($info['air']['pm10'] <= 200) : ?> 
+                <div class="size-25 md:size-35 bg-[#F01F1F] rounded-full m-2"></div>
+            <?php elseif ($info['air']['pm10'] > 200) : ?> 
+                <div class="size-25 md:size-35 bg-[#AA24CC] rounded-full m-2"></div>
+            <?php endif ?>
+                <p class="text-center pt-4 text-lg md:text-2xl font-semibold">PM 10</p>
+                <p class="text-center md:pt-4 text-lg md:text-2xl"><?php echo $info['air']['pm10'] ?> µg/m3</p>
+            </div>
+
+            <?php if ($info['air']['nitrogen_dioxide'] <= 40) : ?>
+                <div class="size-25 md:size-35 bg-[#69A33D] rounded-full m-2">
+            <?php elseif ($info['air']['nitrogen_dioxide'] <= 70) : ?>
+                <div class="size-25 md:size-35 bg-[#E9D92C] rounded-full m-2">
+            <?php elseif ($info['air']['nitrogen_dioxide'] <= 150) : ?> 
+                <div class="size-25 md:size-35 bg-[#EA6C29] rounded-full m-2"></div>
+            <?php elseif ($info['air']['nitrogen_dioxide'] <= 200) : ?> 
+                <div class="size-25 md:size-35 bg-[#F01F1F] rounded-full m-2"></div>
+            <?php elseif ($info['air']['nitrogen_dioxide'] > 200) : ?> 
+                <div class="size-25 md:size-35 bg-[#AA24CC] rounded-full m-2"></div>
+            <?php endif ?>
+                <p class="text-center pt-4 text-lg md:text-2xl font-semibold">NO2</p>
+                <p class="text-center md:pt-4 text-lg md:text-2xl"><?php echo $info['air']['nitrogen_dioxide'] ?> µg/m3</p>
+            </div>
+
+            <?php if ($info['air']['ozone'] <= 60) : ?>
+                <div class="size-25 md:size-35 bg-[#69A33D] rounded-full m-2">
+            <?php elseif ($info['air']['ozone'] <= 100) : ?>
+                <div class="size-25 md:size-35 bg-[#E9D92C] rounded-full m-2">
+            <?php elseif ($info['air']['ozone'] <= 140) : ?> 
+                <div class="size-25 md:size-35 bg-[#EA6C29] rounded-full m-2"></div>
+            <?php elseif ($info['air']['ozone'] <= 180) : ?> 
+                <div class="size-25 md:size-35 bg-[#F01F1F] rounded-full m-2"></div>
+            <?php elseif ($info['air']['ozone'] > 180) : ?> 
+                <div class="size-25 md:size-35 bg-[#AA24CC] rounded-full m-2"></div>
+            <?php endif ?>
+                <p class="text-center pt-4 text-lg md:text-2xl font-semibold">O3</p>
+                <p class="text-center md:pt-4 text-lg md:text-2xl"><?php echo $info['air']['ozone'] ?> µg/m3</p>
+            </div>
 
 
             <div class="grid grid-cols-3 grid-rows-2 gap-3 md:gap-0 md:grid-rows-4 md:grid-cols-2 md:border md:rounded-lg p-4 col-span-2">
                 <p class="hidden md:block justify-self-center text-xl pb-4 col-span-2">Météo</p>
                 
                     <img class="w-auto h-[30px] mr-3 justify-self-center col-1 row-1 md:col-1 md:row-2" src="../images/Temperature.png" alt="Image de thermostat">
-                    <p class="text-xl col-1 row-2 md:col-2 md:row-2">16.5 C°</p>
+                    <p class="text-xl col-1 row-2 md:col-2 md:row-2"><?php echo $info['weather']['temperature_2m'] ?> C°</p>
 
                     <img class="w-auto h-[30px] mr-3 justify-self-center col-2 row-1 md:col-1 md:row-3" src="../images/Rain.png" alt="Image de thermostat">
-                    <p class="text-xl col-2 row-2 md:col-2 md:row-3">0.00 mm</p>
+                    <p class="text-xl col-2 row-2 md:col-2 md:row-3"><?php echo $info['weather']['precipitation'] ?> mm</p>
 
                     <img class="w-auto h-[30px] mr-3 justify-self-center col-3 row-1 md:col-1 md:row-4" src="../images/Wind.png" alt="Image de thermostat">
-                    <p class="text-xl col-3 row-2 md:col-2 md:row-4">8 Km/h</p>
+                    <p class="text-xl col-3 row-2 md:col-2 md:row-4"><?php echo $info['weather']['wind_speed_10m'] ?> Km/h</p>
             </div>
         </div>
     </div>
