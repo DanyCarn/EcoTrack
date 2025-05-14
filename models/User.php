@@ -26,5 +26,14 @@ include_once "../models/Model.php";
 
          return $result;
          }
+
+         /**
+          * Récupère tous les utilisateurs
+          */
+         public function getAllUsers(){
+            $query = 'SELECT * FROM t_utilisateur';
+    
+            return $this->formatData($this->querySimpleExecute($query));
+        }
  }
 ?>

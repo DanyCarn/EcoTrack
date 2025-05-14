@@ -8,7 +8,7 @@ include_once "../controllers/APIController.php";
  * Date: 13.05.2025
  * Description: Contrôleur qui gère les informations à afficher dans la page d'accueil
  */
- class HomeController {
+ class CityController {
 
     /**
      * Récupère les informations de l'air de la zone de l'utilisateur non-connecté

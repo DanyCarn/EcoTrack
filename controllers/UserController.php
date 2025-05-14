@@ -30,6 +30,18 @@ class UserController {
      */
     public function addUser() {
 
+        $users = $this->model->getAllUsers();
+
+        //Vérifie que l'identifiant n'exist pas déjà
+        foreach ($users as $user) {
+            if ($user['identifiant'] == $_POST['username']) {
+                header('Location: addUserExists');
+                exit;
+            } else {
+                continue;
+            }
+        }
+
         if ($_POST['password'] == $_POST['password_confirm']){
 
             $username = $_POST['username'];
@@ -46,6 +58,50 @@ class UserController {
             header('Location: /addUserPasswordError');
         }
 
+    }
+
+
+
+    /**
+     * Ouvre le formulaire de connexion
+     * @return void
+     */
+    public function openConnectionForm(){
+        include "../views/form_connect.php";
+    }
+
+    /**
+     * Connecte l'utilisateur
+     * @return void
+     */
+    public function connect(){
+
+        $users = $this->model->getAllUsers();
+
+        foreach ($users as $user){
+
+            if ($user['identifiant'] == $_POST['username']){
+
+                if(password_verify($_POST['password'], $user['mot_de_passe'])){
+
+                    $_SESSION['userConnected'] = true;
+                    $_SESSION['userId'] = $user['utilisateur_id'];
+
+                    session_write_close();
+
+                    header('Location: /dashboard');
+                    exit;
+
+                } else {
+                    header('Location: /connectFormPasswordError');
+                    exit;
+                }
+
+            } else {
+                continue;
+            }
+        }
+        header('Location: /connectFormUserNotFound');
     }
 
 }

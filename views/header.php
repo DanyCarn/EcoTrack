@@ -21,7 +21,7 @@
     </div>
     <div class="hidden md:flex col-start-3 justify-end content-center">
         <a href="/addUserForm" class="text-xl border rounded-xl p-1 bg-[#69A33D] hover:bg-[#587D3C] mr-3">Créer un compte</a>
-        <a href="" class="text-xl border rounded-xl p-1 bg-[#69A33D] hover:bg-[#587D3C]">Se connecter</a>
+        <a href="/connectForm" class="text-xl border rounded-xl p-1 bg-[#69A33D] hover:bg-[#587D3C]">Se connecter</a>
     </div>
 </div>
 <div>

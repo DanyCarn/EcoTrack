@@ -33,6 +33,8 @@
         <p class="text-red-500 text-lg">Les deux mots de passe ne correspondent pas.</p>
     <?php elseif ($_GET['route'] == 'addUserError') :?>
         <p class="text-red-500 text-lg">Une erreur est survenue</p>
+    <?php elseif ($_GET['route'] == 'addUserExists') :?>
+        <p class="text-red-500 text-lg">Ce nom d'utilisateur existe déjà</p>
     <?php endif;?>
 
     <p class="mt-30 text-lg">Vous avez déjà un compte ?</p>

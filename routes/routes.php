@@ -6,14 +6,13 @@
  * Date: 12.05.2025
  * Descritpion: Routage du site
  */
+
 require_once "../config/database.php";
-require_once "../controllers/HomeController.php";
-require_once "../controllers/ConnectionController.php";
+require_once "../controllers/CityController.php";
 require_once "../controllers/UserController.php";
 
 //Instanciation de tous les contrôleurs
-$home = new HomeController();
-$connection = new ConnectionController();
+$city = new CityController();
 $user = new UserController();
 
 $route = $_GET['route'] ?? 'home';
@@ -32,6 +31,21 @@ switch ($route) {
     case 'addUserPasswordError':
         $user->openAddUserForm();
         break;
+    case 'addUserExists':
+        $user->openAddUserForm();
+        break;
+    case 'connectForm':
+        $user->openConnectionForm();
+        break;
+    case 'connect':
+        $user->connect();
+        break;
+    case 'connectFormUserNotFound':
+        $user->openConnectionForm();
+        break;
+    case 'connectFormPasswordError':
+        $user->openConnectionForm();
+        break;
     default:
-        $home->showHome();
+        $city->showHome();
 }
