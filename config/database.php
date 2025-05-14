@@ -20,7 +20,7 @@ class Database {
 
         if (!isset(self::$conn)) {
             try {
-                self::$conn = new PDO("mysql:host=" . $jsonContent['host'] . ";dbname=" . $jsonContent['db_name'], $jsonContent['username'], $jsonContent['password']);
+                self::$conn = new PDO("mysql:host=" . $jsonContent['host'] . ";port=" . $jsonContent['port'] . ";dbname=" . $jsonContent['db_name'], username: $jsonContent['username'], password: $jsonContent['password']);
                 self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             } catch (PDOException $e) {
                 die("Erreur de connexion: " . $e->getMessage());

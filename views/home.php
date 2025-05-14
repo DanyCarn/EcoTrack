@@ -7,6 +7,7 @@
  * Description: Page d'accueil indiquant la météo et la qualité de l'air de la zone approximative récupérée grâce à l'adresse IP
  */
 
+ const TITLE = "";
 include_once("../views/header.php");
 ?>
 
@@ -37,11 +38,11 @@ include_once("../views/header.php");
             <?php elseif ($info['air']['pm2_5'] <= 25) : ?>
                 <div class="size-25 md:size-35 bg-[#E9D92C] rounded-full m-2">
             <?php elseif ($info['air']['pm2_5'] <= 50) : ?> 
-                <div class="size-25 md:size-35 bg-[#EA6C29] rounded-full m-2"></div>
+                <div class="size-25 md:size-35 bg-[#EA6C29] rounded-full m-2">
             <?php elseif ($info['air']['pm2_5'] <= 75) : ?> 
-                <div class="size-25 md:size-35 bg-[#F01F1F] rounded-full m-2"></div>
+                <div class="size-25 md:size-35 bg-[#F01F1F] rounded-full m-2">
             <?php elseif ($info['air']['pm2_5'] > 75) : ?> 
-                <div class="size-25 md:size-35 bg-[#AA24CC] rounded-full m-2"></div>
+                <div class="size-25 md:size-35 bg-[#AA24CC] rounded-full m-2">
             <?php endif ?>
                 <p class="text-center pt-4 text-lg md:text-2xl font-semibold">PM 2.5</p>
                 <p class="text-center md:pt-4 text-lg md:text-2xl"><?php echo $info['air']['pm2_5'] ?> µg/m3</p>
@@ -52,11 +53,11 @@ include_once("../views/header.php");
             <?php elseif ($info['air']['pm10'] <= 50) : ?>
                 <div class="size-25 md:size-35 bg-[#E9D92C] rounded-full m-2">
             <?php elseif ($info['air']['pm10'] <= 100) : ?> 
-                <div class="size-25 md:size-35 bg-[#EA6C29] rounded-full m-2"></div>
-            <?php elseif ($info['air']['pm10'] <= 200) : ?> 
-                <div class="size-25 md:size-35 bg-[#F01F1F] rounded-full m-2"></div>
+                <div class="size-25 md:size-35 bg-[#EA6C29] rounded-full m-2">
+            <?php elseif ($info['air']['pm10'] <= 200) : ?>
+                <div class="size-25 md:size-35 bg-[#F01F1F] rounded-full m-2">
             <?php elseif ($info['air']['pm10'] > 200) : ?> 
-                <div class="size-25 md:size-35 bg-[#AA24CC] rounded-full m-2"></div>
+                <div class="size-25 md:size-35 bg-[#AA24CC] rounded-full m-2">
             <?php endif ?>
                 <p class="text-center pt-4 text-lg md:text-2xl font-semibold">PM 10</p>
                 <p class="text-center md:pt-4 text-lg md:text-2xl"><?php echo $info['air']['pm10'] ?> µg/m3</p>
@@ -67,11 +68,11 @@ include_once("../views/header.php");
             <?php elseif ($info['air']['nitrogen_dioxide'] <= 70) : ?>
                 <div class="size-25 md:size-35 bg-[#E9D92C] rounded-full m-2">
             <?php elseif ($info['air']['nitrogen_dioxide'] <= 150) : ?> 
-                <div class="size-25 md:size-35 bg-[#EA6C29] rounded-full m-2"></div>
+                <div class="size-25 md:size-35 bg-[#EA6C29] rounded-full m-2">
             <?php elseif ($info['air']['nitrogen_dioxide'] <= 200) : ?> 
-                <div class="size-25 md:size-35 bg-[#F01F1F] rounded-full m-2"></div>
+                <div class="size-25 md:size-35 bg-[#F01F1F] rounded-full m-2">
             <?php elseif ($info['air']['nitrogen_dioxide'] > 200) : ?> 
-                <div class="size-25 md:size-35 bg-[#AA24CC] rounded-full m-2"></div>
+                <div class="size-25 md:size-35 bg-[#AA24CC] rounded-full m-2">
             <?php endif ?>
                 <p class="text-center pt-4 text-lg md:text-2xl font-semibold">NO2</p>
                 <p class="text-center md:pt-4 text-lg md:text-2xl"><?php echo $info['air']['nitrogen_dioxide'] ?> µg/m3</p>
@@ -82,11 +83,11 @@ include_once("../views/header.php");
             <?php elseif ($info['air']['ozone'] <= 100) : ?>
                 <div class="size-25 md:size-35 bg-[#E9D92C] rounded-full m-2">
             <?php elseif ($info['air']['ozone'] <= 140) : ?> 
-                <div class="size-25 md:size-35 bg-[#EA6C29] rounded-full m-2"></div>
+                <div class="size-25 md:size-35 bg-[#EA6C29] rounded-full m-2">
             <?php elseif ($info['air']['ozone'] <= 180) : ?> 
-                <div class="size-25 md:size-35 bg-[#F01F1F] rounded-full m-2"></div>
+                <div class="size-25 md:size-35 bg-[#F01F1F] rounded-full m-2">
             <?php elseif ($info['air']['ozone'] > 180) : ?> 
-                <div class="size-25 md:size-35 bg-[#AA24CC] rounded-full m-2"></div>
+                <div class="size-25 md:size-35 bg-[#AA24CC] rounded-full m-2">
             <?php endif ?>
                 <p class="text-center pt-4 text-lg md:text-2xl font-semibold">O3</p>
                 <p class="text-center md:pt-4 text-lg md:text-2xl"><?php echo $info['air']['ozone'] ?> µg/m3</p>
@@ -96,13 +97,13 @@ include_once("../views/header.php");
             <div class="grid grid-cols-3 grid-rows-2 gap-3 md:gap-0 md:grid-rows-4 md:grid-cols-2 md:border md:rounded-lg p-4 col-span-2">
                 <p class="hidden md:block justify-self-center text-xl pb-4 col-span-2">Météo</p>
                 
-                    <img class="w-auto h-[30px] mr-3 justify-self-center col-1 row-1 md:col-1 md:row-2" src="../images/Temperature.png" alt="Image de thermostat">
+                    <img class="w-auto h-[30px] mr-3 justify-self-center col-1 row-1 md:col-1 md:row-2" src="../public/images/Temperature.png" alt="Image de thermostat">
                     <p class="text-xl col-1 row-2 md:col-2 md:row-2"><?php echo $info['weather']['temperature_2m'] ?> C°</p>
 
-                    <img class="w-auto h-[30px] mr-3 justify-self-center col-2 row-1 md:col-1 md:row-3" src="../images/Rain.png" alt="Image de thermostat">
+                    <img class="w-auto h-[30px] mr-3 justify-self-center col-2 row-1 md:col-1 md:row-3" src="../public/images/Rain.png" alt="Image de thermostat">
                     <p class="text-xl col-2 row-2 md:col-2 md:row-3"><?php echo $info['weather']['precipitation'] ?> mm</p>
 
-                    <img class="w-auto h-[30px] mr-3 justify-self-center col-3 row-1 md:col-1 md:row-4" src="../images/Wind.png" alt="Image de thermostat">
+                    <img class="w-auto h-[30px] mr-3 justify-self-center col-3 row-1 md:col-1 md:row-4" src="../public/images/Wind.png" alt="Image de thermostat">
                     <p class="text-xl col-3 row-2 md:col-2 md:row-4"><?php echo $info['weather']['wind_speed_10m'] ?> Km/h</p>
             </div>
         </div>

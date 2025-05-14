@@ -58,8 +58,8 @@ class APIController {
     public static function getAirInfo($lat, $long): array {
 
         //Récupération de l'info météo
-        $meteoURL = "https://api.open-meteo.com/v1/forecast?latitude=".$lat."&longitude=".$long."&hourly=temperature_2m&current=temperature_2m,precipitation,wind_speed_10m";
-        $info['weather'] = self::execRequest($meteoURL)['current'];
+        $weatherURL = "https://api.open-meteo.com/v1/forecast?latitude=".$lat."&longitude=".$long."&hourly=temperature_2m&current=temperature_2m,precipitation,wind_speed_10m";
+        $info['weather'] = self::execRequest($weatherURL)['current'];
 
         //récupération de l'info de la qualité de l'air
         $airQualityURL = "https://air-quality-api.open-meteo.com/v1/air-quality?latitude=".$lat."&longitude=".$long."&current=european_aqi,pm10,pm2_5,nitrogen_dioxide,ozone";
