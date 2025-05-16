@@ -6,7 +6,10 @@
  * Description: Contrôleur de l'utilisateur
  */
 
+ error_reporting(E_ALL ^ E_NOTICE);
  require_once "../models/User.php";
+ require_once "../core/View.php";
+ session_start();
 
 class UserController {
 
@@ -21,7 +24,7 @@ class UserController {
      * @return void
      */
     public function openAddUserForm(){
-        include "../views/form_addUser.php";
+        View::render('form_addUser', title:'Création de compte');
     }
     
     /**
@@ -32,7 +35,7 @@ class UserController {
 
         $users = $this->model->getAllUsers();
 
-        //Vérifie que l'identifiant n'exist pas déjà
+        //Vérifie que l'identifiant n'existe pas déjà. Si il existe déjà, l'utilisateur doit en choisir un autre
         foreach ($users as $user) {
             if ($user['identifiant'] == $_POST['username']) {
                 header('Location: addUserExists');
@@ -67,7 +70,7 @@ class UserController {
      * @return void
      */
     public function openConnectionForm(){
-        include "../views/form_connect.php";
+        View::render('form_connect', title:'Connexion');
     }
 
     /**
@@ -87,7 +90,9 @@ class UserController {
                     $_SESSION['userConnected'] = true;
                     $_SESSION['userId'] = $user['utilisateur_id'];
 
-                    session_write_close();
+                    //var_dump($_SESSION);
+
+                    //session_write_close();
 
                     header('Location: /dashboard');
                     exit;
@@ -102,6 +107,22 @@ class UserController {
             }
         }
         header('Location: /connectFormUserNotFound');
+        exit;
+    }
+
+    /**
+     * Déconnecte l'utilisateur
+     * @return void
+     */
+    public function disconnect(){
+
+        $_SESSION['userConnected'] = false;
+        unset($_SESSION['userId']);
+
+        session_write_close();
+
+        header('Location: /home');
+        exit;
     }
 
 }

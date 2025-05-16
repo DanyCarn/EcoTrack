@@ -6,7 +6,7 @@
  * Date: 12.05.2025
  * Description: Contrôleur qui gère les requêtes des API
  */
-class APIController {
+class API {
 
      /**
       * Execute les requêtes API

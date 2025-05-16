@@ -6,8 +6,6 @@
  * Description: Formulaire de création d'utilisateur
  */
 
- const TITLE = "Création de compte";
- include "../views/header.php";
 ?>
 <div class="flex flex-col items-center">
     <form action="/addUser" method="POST" class="flex flex-col items-center">
@@ -32,13 +30,13 @@
     <?php if ($_GET['route'] == 'addUserPasswordError') :?>
         <p class="text-red-500 text-lg">Les deux mots de passe ne correspondent pas.</p>
     <?php elseif ($_GET['route'] == 'addUserError') :?>
-        <p class="text-red-500 text-lg">Une erreur est survenue</p>
+        <p class="text-red-500 text-lg">Une erreur est survenue. Veuillez réessayer.</p>
+        <p class="text-red-500 text-lg">(Aide: le nom d'utilisateur doit faire moins de 255 caractères.)</p>
     <?php elseif ($_GET['route'] == 'addUserExists') :?>
         <p class="text-red-500 text-lg">Ce nom d'utilisateur existe déjà</p>
     <?php endif;?>
 
     <p class="mt-30 text-lg">Vous avez déjà un compte ?</p>
-    <a href="/connectForm" class="text-lg border-1 rounded-lg mt-4 p-1 bg-[#69A33D] hover:bg-[#587D3C]">Se connecter</a>
+    <a href="/connectForm" class="text-lg border-1 rounded-lg mt-4 p-1 bg-[#69A33D] hover:bg-[#587D3C]">Connexion</a>
 
 </div>
-<?php include "../views/footer.php";

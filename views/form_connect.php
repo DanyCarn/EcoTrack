@@ -5,9 +5,6 @@
  * Date: 14.05.2025
  * Description: Formulaire de connexion
  */
-
- const TITLE = "Connexion";
- include "../views/header.php";
 ?>
 
 <div class="flex flex-col items-center">
@@ -35,4 +32,3 @@
     <a href="/addUserForm" class="text-lg border-1 rounded-lg mt-4 p-1 bg-[#69A33D] hover:bg-[#587D3C]">Créer un compte</a>
 
 </div>
-<?php include "../views/footer.php";

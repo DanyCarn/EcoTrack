@@ -7,8 +7,9 @@
  * Description: Page d'accueil indiquant la météo et la qualité de l'air de la zone approximative récupérée grâce à l'adresse IP
  */
 
- const TITLE = "";
-include_once("../views/header.php");
+ // décompose les donnée voir HomeController function showHome()
+ $userCoordinates=$data[0];
+ $info=$data[1];
 ?>
 
 <div class="flex flex-col items-center">
@@ -17,15 +18,15 @@ include_once("../views/header.php");
 
     <div class="w-9/10 md:w-auto border rounded-lg p-6">
         <?php if ($info['air']['european_aqi'] <= 50): ?>
-            <p class="bg-[#69A33D] rounded-lg p-1 text-xl w-fit justify-self-center">IQA : <?php echo $info['air']['european_aqi'] ?> (Bon)</p>
+            <p class="bg-[#69A33D] border-1 rounded-lg p-1 text-xl w-fit justify-self-center">IQA : <?php echo $info['air']['european_aqi'] ?> (Bon)</p>
         <?php elseif ($info['air']['european_aqi'] <= 100): ?>
-            <p class="bg-[#E9D92C] rounded-lg p-1 text-xl w-fit justify-self-center">IQA : <?php echo $info['air']['european_aqi'] ?> (Modéré)</p>
+            <p class="bg-[#E9D92C] border-1 rounded-lg p-1 text-xl w-fit justify-self-center">IQA : <?php echo $info['air']['european_aqi'] ?> (Modéré)</p>
         <?php elseif ($info['air']['european_aqi'] <= 150): ?>
-            <p class="bg-[#EA6C29] rounded-lg p-1 text-xl w-fit justify-self-center">IQA : <?php echo $info['air']['european_aqi'] ?> (Pas bon)</p>
+            <p class="bg-[#EA6C29] border-1 rounded-lg p-1 text-xl w-fit justify-self-center">IQA : <?php echo $info['air']['european_aqi'] ?> (Pas bon)</p>
         <?php elseif ($info['air']['european_aqi'] <= 200): ?>
-            <p class="bg-[#F01F1F] rounded-lg p-1 text-xl w-fit justify-self-center">IQA : <?php echo $info['air']['european_aqi'] ?> (Mauvais)</p>
+            <p class="bg-[#F01F1F] border-1 rounded-lg p-1 text-xl w-fit justify-self-center">IQA : <?php echo $info['air']['european_aqi'] ?> (Mauvais)</p>
         <?php elseif ($info['air']['european_aqi'] <= 300): ?>
-            <p class="bg-[#AA24CC] rounded-lg p-1 text-xl w-fit justify-self-center">IQA : <?php echo $info['air']['european_aqi'] ?> (Très mauvais)</p>
+            <p class="bg-[#AA24CC] border-1 rounded-lg p-1 text-xl w-fit justify-self-center">IQA : <?php echo $info['air']['european_aqi'] ?> (Très mauvais)</p>
         <?php else : ?>
             <p class="rounded-lg p-1 text-xl w-fit justify-self-center">Donnée non disponible</p>
         <?php endif;?>
@@ -97,7 +98,7 @@ include_once("../views/header.php");
             <div class="grid grid-cols-3 grid-rows-2 gap-3 md:gap-0 md:grid-rows-4 md:grid-cols-2 md:border md:rounded-lg p-4 col-span-2">
                 <p class="hidden md:block justify-self-center text-xl pb-4 col-span-2">Météo</p>
                 
-                    <img class="w-auto h-[30px] mr-3 justify-self-center col-1 row-1 md:col-1 md:row-2" src="../public/images/Temperature.png" alt="Image de thermostat">
+                    <img class="w-auto h-[30px] mr-3 justify-self-center col-1 row-1 md:col-1 md:row-2 " src="../public/images/Temperature.png" alt="Image de thermostat">
                     <p class="text-xl col-1 row-2 md:col-2 md:row-2"><?php echo $info['weather']['temperature_2m'] ?> C°</p>
 
                     <img class="w-auto h-[30px] mr-3 justify-self-center col-2 row-1 md:col-1 md:row-3" src="../public/images/Rain.png" alt="Image de thermostat">
@@ -110,8 +111,6 @@ include_once("../views/header.php");
     </div>
     <p class="text-xl md:text-3xl m-8">Connectez-vous afin d'avoir des informations sur d'autres villes</p>
 
-    <a href="" class="md:hidden text-xl border rounded-xl p-1 bg-[#69A33D] hover:bg-[#587D3C]">Créer un compte</a>
-    <a href="" class="md:hidden text-xl border rounded-xl p-1 bg-[#69A33D] hover:bg-[#587D3C] mt-7">Se connecter</a>
+    <a href="/addUserForm" class="md:hidden text-xl border rounded-xl p-1 bg-[#69A33D] hover:bg-[#587D3C]">Créer un compte</a>
+    <a href="/connectForm" class="md:hidden text-xl border rounded-xl p-1 bg-[#69A33D] hover:bg-[#587D3C] mt-7">Se connecter</a>
 </div>
-
-<?php include_once("../views/footer.php")?>

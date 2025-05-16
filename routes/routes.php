@@ -8,12 +8,14 @@
  */
 
 require_once "../config/database.php";
-require_once "../controllers/CityController.php";
+require_once "../controllers/HomeController.php";
 require_once "../controllers/UserController.php";
+require_once "../controllers/DashboardController.php";
 
 //Instanciation de tous les contrôleurs
-$city = new CityController();
+$home = new HomeController();
 $user = new UserController();
+$dashboard = new DashboardController();
 
 $route = $_GET['route'] ?? 'home';
 
@@ -46,6 +48,12 @@ switch ($route) {
     case 'connectFormPasswordError':
         $user->openConnectionForm();
         break;
+    case 'disconnect':
+        $user->disconnect();
+        break;
+    case "dashboard":
+        $dashboard->showDashboard();
+        break;
     default:
-        $city->showHome();
+        $home->showHome();
 }

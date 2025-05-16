@@ -36,8 +36,13 @@
             $req->bindValue($bind, $value);
         }
 
-        $req->execute();
+        try {
 
+            $req->execute();
+        } catch (PDOException) {
+            return false;
+        }
+        
         return $req;
     }
 
