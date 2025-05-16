@@ -8,6 +8,7 @@
 
  include "../models/Dashboard.php";
  require_once "../core/View.php";
+ require_once "../models/API.php";
 
  class DashboardController {
      private $model;

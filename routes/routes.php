@@ -11,11 +11,13 @@ require_once "../config/database.php";
 require_once "../controllers/HomeController.php";
 require_once "../controllers/UserController.php";
 require_once "../controllers/DashboardController.php";
+require_once "../controllers/CityController.php";
 
 //Instanciation de tous les contrôleurs
 $home = new HomeController();
 $user = new UserController();
 $dashboard = new DashboardController();
+$city = new CityController();
 
 $route = $_GET['route'] ?? 'home';
 
@@ -53,6 +55,12 @@ switch ($route) {
         break;
     case "dashboard":
         $dashboard->showDashboard();
+        break;
+    case "addCityForm":
+        $city->addCityForm();
+        break;
+    case "addCity":
+        $city->addCity();
         break;
     default:
         $home->showHome();

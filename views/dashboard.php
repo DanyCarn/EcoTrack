@@ -52,6 +52,6 @@
     </div>
 
     <div class="flex items-center">
-        <a href="" class="border-1 rounded-lg bg-[#69A33D] hover:bg-[#587D3C] text-3xl p-5 h-fit justify-self-center mt-3 md:mt-0">Ajouter ville</a>
+        <a href="/addCityForm" class="border-1 rounded-lg bg-[#69A33D] hover:bg-[#587D3C] text-3xl p-5 h-fit justify-self-center mt-3 md:mt-0">Ajouter ville</a>
     </div>
 </div>

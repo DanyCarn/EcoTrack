@@ -67,5 +67,20 @@ class API {
 
         return $info;
     }
+
+    /**
+     * Récupère les coordonnées d'une ville grâce à son nom et au pays dans lequel elle se situe
+     * @param mixed $cityName Nom de la ville
+     * @param mixed $country Pays où se situe la ville
+     */
+    public static function getCityCoordinates($cityName, $country){
+
+        $apiKey = json_decode(file_get_contents('../secrets/api_keys.json'), true);
+
+        $url = "https://us1.locationiq.com/v1/search?key=".$apiKey['locationIq']."&q=".$cityName."%20" .$country."&format=json&";
+
+        //retourne uniquement le premier endroit retourné en résultat qui est celui qui colle le plus à la recherche
+        return self::execRequest($url);
+    }
 }
 ?>
