@@ -37,9 +37,8 @@
         }
 
         try {
-
             $req->execute();
-        } catch (PDOException) {
+        } catch (PDOException $e) {
             return false;
         }
         
@@ -51,7 +50,12 @@
      * @param mixed $req La requête à formatter
      */
     protected function formatData($req){
-        return $req->fetchAll(PDO::FETCH_ASSOC);
+
+        if(!$req){
+            return false;
+        } else {
+            return $req->fetchAll(PDO::FETCH_ASSOC);
+        }
     }
  }
 ?>

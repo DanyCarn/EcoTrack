@@ -41,11 +41,9 @@
      */
     public function getCity($cityName, $cityLat, $cityLong){
         
-        $query = "SELECT * FROM t_region WHERE nom = :name AND latitude = :lat AND longitude = :long";
+        $query = "SELECT * FROM t_region WHERE nom = '$cityName' AND latitude = '$cityLat' AND longitude = '$cityLong'";
 
-        $binds = ['name'=>$cityName, 'lat'=>$cityLat, 'long'=>$cityLong];
-
-        return $this->formatData($this->queryPrepareExecute($binds, $query));
+        return $this->formatData($this->querySimpleExecute($query));
     }
 
     /**

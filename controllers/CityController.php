@@ -36,17 +36,25 @@ require_once "../core/View.php";
 
         //Si la requête réussi renvoie sur le tableau de bord, sinon, retourne sur le formulaire indiquant une erreur
         if (isset($coordinates[0])) {
-            $latitude = $coordinates[0]['lat'];
-            $longitude = $coordinates[0]['lon'];
+
+            //Traitement des données de latitude et longitude afin qu'elles aient la bonne taille
+            $latitude = explode('.', $coordinates[0]['lat']);
+            $latitudeDecimals = mb_strimwidth($latitude[1], 0, 7);
+            $finalLatitude = $latitude[0] .'.'. $latitudeDecimals;
+
+            $longitude = explode('.', $coordinates[0]['lon']);
+            $longitudeDecimals = mb_strimwidth($longitude[1], 0, 7);
+            $finalLongitude = $longitude[0] .'.'. $longitudeDecimals;
+
             $name = explode(',', $coordinates[0]['display_name'])[0];
 
             //Si la ville n'existe pas encore dans la base de données, la crée
-            if(!isset($this->model->getCity($name, $latitude, $longitude)[0])){
+            if(!isset($this->model->getCity($name, $finalLatitude, $finalLongitude)[0])){
              
-                $this->model->addCity($name, $latitude, $longitude);
+                $this->model->addCity($name, $finalLatitude, $finalLongitude);
             }
 
-            $city = $this->model->getCity($name, $latitude, $longitude)[0];
+            $city = $this->model->getCity($name, $finalLatitude, $finalLongitude)[0];
 
             //Ajoute l'enregistrement dans la table t_enregistrer et redirige vers le tableau de bord si ça réussi
             if($this->model->linkUserToCity($_SESSION['userId'], $city['region_id'])){

@@ -9,6 +9,7 @@
 ?>
 <div class="flex flex-col items-center">
     <form action="/addUser" method="POST" class="flex flex-col items-center">
+        
         <div class="mt-5">
             <label for="username" class="text-xl align-self-center">Nom d'utilisateur</label><br>
             <input type="text" name="username" required class="border-1 rounded-lg w-60">

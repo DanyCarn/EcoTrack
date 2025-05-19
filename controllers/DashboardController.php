@@ -6,7 +6,7 @@
  * Description: Contrôleur du tableau de bord
  */
 
- include "../models/Dashboard.php";
+ require_once "../models/Dashboard.php";
  require_once "../core/View.php";
  require_once "../models/API.php";
 
@@ -22,7 +22,16 @@
       * @return void
       */
      public function showDashboard(){
-        View::render('dashboard', title:'Tableau de bord');
+
+      $cities = $this->model->getUserCities($_SESSION['userId']);
+
+      for ($i = 0; $i<count($cities); $i++) {
+        $data[$i] = API::getAirInfo($cities[$i]['latitude'], $cities[$i]['longitude']);
+        $data[$i]['name'] = $cities[$i]['nom'];
+        $data[$i]['id'] = $cities[$i]['region_id'];
+      }
+
+      View::render('dashboard', $data,  'Tableau de bord');
      }
  }
 ?>

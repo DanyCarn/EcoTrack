@@ -16,7 +16,7 @@ require_once("../core/View.php");
      * @return void
      */
     public function showHome(){
-        $userCoordinates = $this->getLocation();
+        $userCoordinates = API::getUserLocation();
 
         $info = API::getAirInfo($userCoordinates['location']['latitude'], $userCoordinates['location']['longitude']);
 
@@ -25,16 +25,8 @@ require_once("../core/View.php");
         $data[0]=$userCoordinates;
         $data[1]=$info;
 
-        View::render('home', ['data' => $data], 'Emplacement de connection');
+        View::render('home', ['data' => $data]);
     }
-
-    /**
-     * Récupère la latitude et la longitude d'un utilisateur avec son adresse IP
-     * @return array Un tableau contenant la latitude et la longitude
-     */
-    private function getLocation() {
-        return API::getUserLocation();
-    }
- }
+}
 
 ?>

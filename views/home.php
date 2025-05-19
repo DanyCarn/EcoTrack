@@ -14,7 +14,7 @@
 
 <div class="flex flex-col items-center">
 
-    <h2 class="text-2xl md:text-3xl p-4">Qualité de l'air à <?php echo $userCoordinates['city']['name'] ?></h2>
+    <h2 class="text-2xl md:text-4xl p-4">Qualité de l'air à <?php echo $userCoordinates['city']['name'] ?></h2>
 
     <div class="w-9/10 md:w-auto border rounded-lg p-6">
         <?php if ($info['air']['european_aqi'] <= 50): ?>
@@ -98,14 +98,14 @@
             <div class="grid grid-cols-3 grid-rows-2 gap-3 md:gap-0 md:grid-rows-4 md:grid-cols-2 md:border md:rounded-lg p-4 col-span-2">
                 <p class="hidden md:block justify-self-center text-xl pb-4 col-span-2">Météo</p>
                 
-                    <img class="w-auto h-[30px] mr-3 justify-self-center col-1 row-1 md:col-1 md:row-2 " src="../public/images/Temperature.png" alt="Image de thermostat">
-                    <p class="text-xl col-1 row-2 md:col-2 md:row-2"><?php echo $info['weather']['temperature_2m'] ?> C°</p>
+                    <img class="w-auto h-[30px] mr-3 justify-self-center self-end md:self-auto col-1 row-1 md:col-1 md:row-2 " src="../public/images/Temperature.png" alt="Image de thermostat">
+                    <p class="text-lg md:text-xl col-1 row-2 md:col-2 md:row-2"><?php echo $info['weather']['temperature_2m'] ?> C°</p>
 
-                    <img class="w-auto h-[30px] mr-3 justify-self-center col-2 row-1 md:col-1 md:row-3" src="../public/images/Rain.png" alt="Image de thermostat">
-                    <p class="text-xl col-2 row-2 md:col-2 md:row-3"><?php echo $info['weather']['precipitation'] ?> mm</p>
+                    <img class="w-auto h-[30px] mr-3 justify-self-center self-end md:self-auto col-2 row-1 md:col-1 md:row-3" src="../public/images/Rain.png" alt="Image de thermostat">
+                    <p class="text-lg md:text-xl col-2 row-2 md:col-2 md:row-3"><?php echo $info['weather']['precipitation'] ?> mm</p>
 
-                    <img class="w-auto h-[30px] mr-3 justify-self-center col-3 row-1 md:col-1 md:row-4" src="../public/images/Wind.png" alt="Image de thermostat">
-                    <p class="text-xl col-3 row-2 md:col-2 md:row-4"><?php echo $info['weather']['wind_speed_10m'] ?> Km/h</p>
+                    <img class="w-auto h-[30px] mr-3 justify-self-center self-end md:self-auto col-3 row-1 md:col-1 md:row-4" src="../public/images/Wind.png" alt="Image de thermostat">
+                    <p class="text-lg md:text-xl col-3 row-2 md:col-2 md:row-4"><?php echo $info['weather']['wind_speed_10m'] ?> Km/h</p>
             </div>
         </div>
     </div>

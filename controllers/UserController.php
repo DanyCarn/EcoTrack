@@ -90,10 +90,6 @@ class UserController {
                     $_SESSION['userConnected'] = true;
                     $_SESSION['userId'] = $user['utilisateur_id'];
 
-                    //var_dump($_SESSION);
-
-                    //session_write_close();
-
                     header('Location: /dashboard');
                     exit;
 

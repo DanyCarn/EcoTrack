@@ -13,7 +13,7 @@ class API {
       * @param mixed $url URL de la requête
       * @return void Réponse de l'API ou FALSE si une erreur est survenue
       */
-     private static function execRequest($url) {
+     private static function execRequest($url): mixed {
 
         $ch = curl_init();
 
