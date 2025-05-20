@@ -16,7 +16,8 @@ require_once("../core/View.php");
      * @return void
      */
     public function showHome(){
-        $userCoordinates = API::getUserLocation();
+
+        $userCoordinates = API::getUserLocation($_SERVER['REMOTE_ADDR']);
 
         $info = API::getAirInfo($userCoordinates['location']['latitude'], $userCoordinates['location']['longitude']);
 

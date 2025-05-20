@@ -13,7 +13,7 @@ class API {
       * @param mixed $url URL de la requête
       * @return void Réponse de l'API ou FALSE si une erreur est survenue
       */
-     private static function execRequest($url): mixed {
+     private static function execRequest($url): array | bool {
 
         $ch = curl_init();
 
@@ -38,12 +38,12 @@ class API {
      * Récupération de la localisation de l'utilisateur grâce à son adresse IP
      * @return array-key Les coordonnées de l'utilisateur ou FALSE si une erreur s'est produite
      */
-    public static function getUserLocation(){
+    public static function getUserLocation($ipAdress){
 
         $json = file_get_contents('../secrets/api_keys.json');
         $apiKey = json_decode($json, true);
 
-        $url = "https://api.geoapify.com/v1/ipinfo?&apiKey=".$apiKey['geoapify'];
+        $url = "https://api.geoapify.com/v1/ipinfo?ip=$ipAdress&apiKey=".$apiKey['geoapify'];
 
         return self::execRequest($url);
 

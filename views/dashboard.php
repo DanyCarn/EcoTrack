@@ -16,7 +16,7 @@
 
     <?php foreach($data as $datas=>$city) : ?>
 
-        <div class="flex flex-col border-1 rounded-lg  w-7/10 md:w-auto mt-9 md:mr-4">
+        <div class="flex flex-col border-1 rounded-lg  w-9/10 md:w-auto mt-9 md:mr-4">
             <div class="flex flex-col md:flex-row justify-around mt-3 h-fit">
                 <p class="text-2xl font-bold ml-3 md:ml-0"><?php echo $city['name']?></p>
                 <?php if ($city['air']['european_aqi'] <= 50): ?>
@@ -39,15 +39,15 @@
                     <div class="flex flex-col items-center m-3">
                         <p class="text-lg font-semibold">PM 2.5</p>
                         <?php if ($city['air']['pm2_5'] <= 10) : ?>
-                            <div class="flex flex-col items-center justify-center bg-[#69A33D] size-20 rounded-full">
+                            <div class="flex flex-col items-center justify-center bg-[#69A33D] size-25 rounded-full">
                         <?php elseif ($city['air']['pm2_5'] <= 25) : ?>
-                            <div class="flex flex-col items-center justify-center bg-[#E9D92C] size-20 rounded-full">
+                            <div class="flex flex-col items-center justify-center bg-[#E9D92C] size-25 rounded-full">
                         <?php elseif ($city['air']['pm2_5'] <= 50) : ?> 
-                            <div class="flex flex-col items-center justify-center bg-[#EA6C29] size-20 rounded-full">
+                            <div class="flex flex-col items-center justify-center bg-[#EA6C29] size-25 rounded-full">
                         <?php elseif ($city['air']['pm2_5'] <= 75) : ?> 
-                            <div class="flex flex-col items-center justify-center bg-[#F01F1F] size-20 rounded-full">
+                            <div class="flex flex-col items-center justify-center bg-[#F01F1F] size-25 rounded-full">
                         <?php elseif ($city['air']['pm2_5'] > 75) : ?> 
-                            <div class="flex flex-col items-center justify-center bg-[#AA24CC] size-20 rounded-full">
+                            <div class="flex flex-col items-center justify-center bg-[#AA24CC] size-25 rounded-full">
                         <?php endif ?>
                             <p class="text-lg"><?php echo $city['air']['pm2_5']?></p>
                             <p class="text-lg">µg/m3</p>
@@ -57,15 +57,15 @@
                     <div class="flex flex-col items-center m-3">
                         <p class="text-lg font-semibold">PM 10</p>
                         <?php if ($city['air']['pm10'] <= 20) : ?>
-                            <div class="flex flex-col items-center justify-center bg-[#69A33D] size-20 rounded-full">
+                            <div class="flex flex-col items-center justify-center bg-[#69A33D] size-25 rounded-full">
                         <?php elseif ($city['air']['pm10'] <= 50) : ?>
-                            <div class="flex flex-col items-center justify-center bg-[#E9D92C] size-20 rounded-full">
+                            <div class="flex flex-col items-center justify-center bg-[#E9D92C] size-25 rounded-full">
                         <?php elseif ($city['air']['pm10'] <= 100) : ?> 
-                            <div class="flex flex-col items-center justify-center bg-[#EA6C29] size-20 rounded-full">
+                            <div class="flex flex-col items-center justify-center bg-[#EA6C29] size-25 rounded-full">
                         <?php elseif ($city['air']['pm10'] <= 200) : ?> 
-                            <div class="flex flex-col items-center justify-center bg-[#F01F1F] size-20 rounded-full">
+                            <div class="flex flex-col items-center justify-center bg-[#F01F1F] size-25 rounded-full">
                         <?php elseif ($city['air']['pm10'] > 200) : ?> 
-                            <div class="flex flex-col items-center justify-center bg-[#AA24CC] size-20 rounded-full">
+                            <div class="flex flex-col items-center justify-center bg-[#AA24CC] size-25 rounded-full">
                         <?php endif ?>
                             <p class="text-lg"><?php echo $city['air']['pm10']?></p>
                             <p class="text-lg">µg/m3</p>
@@ -75,15 +75,15 @@
                     <div class="flex flex-col items-center m-3">
                         <p class="text-lg font-semibold">NO2</p>
                         <?php if ($city['air']['nitrogen_dioxide'] <= 40) : ?>
-                            <div class="flex flex-col items-center justify-center bg-[#69A33D] size-20 rounded-full">
+                            <div class="flex flex-col items-center justify-center bg-[#69A33D] size-25 rounded-full">
                         <?php elseif ($city['air']['nitrogen_dioxide'] <= 70) : ?>
-                            <div class="flex flex-col items-center justify-center bg-[#E9D92C] size-20 rounded-full">
+                            <div class="flex flex-col items-center justify-center bg-[#E9D92C] size-25 rounded-full">
                         <?php elseif ($city['air']['nitrogen_dioxide'] <= 150) : ?> 
-                            <div class="flex flex-col items-center justify-center bg-[#EA6C29] size-20 rounded-full">
+                            <div class="flex flex-col items-center justify-center bg-[#EA6C29] size-25 rounded-full">
                         <?php elseif ($city['air']['nitrogen_dioxide'] <= 200) : ?> 
-                            <div class="flex flex-col items-center justify-center bg-[#F01F1F] size-20 rounded-full">
+                            <div class="flex flex-col items-center justify-center bg-[#F01F1F] size-25 rounded-full">
                         <?php elseif ($city['air']['nitrogen_dioxide'] > 200) : ?> 
-                            <div class="flex flex-col items-center justify-center bg-[#AA24CC] size-20 rounded-full">
+                            <div class="flex flex-col items-center justify-center bg-[#AA24CC] size-25 rounded-full">
                         <?php endif ?>
                             <p class="text-lg"><?php echo $city['air']['nitrogen_dioxide']?></p>
                             <p class="text-lg">µg/m3</p>
@@ -93,15 +93,15 @@
                     <div class="flex flex-col items-center m-3">
                         <p class="text-lg font-semibold">O3</p>
                         <?php if ($city['air']['ozone'] <= 60) : ?>
-                            <div class="flex flex-col items-center justify-center bg-[#69A33D] size-20 rounded-full">
+                            <div class="flex flex-col items-center justify-center bg-[#69A33D] size-25 rounded-full">
                         <?php elseif ($city['air']['ozone'] <= 100) : ?>
-                            <div class="flex flex-col items-center justify-center bg-[#E9D92C] size-20 rounded-full">
+                            <div class="flex flex-col items-center justify-center bg-[#E9D92C] size-25 rounded-full">
                         <?php elseif ($city['air']['ozone'] <= 140) : ?> 
-                            <div class="flex flex-col items-center justify-center bg-[#EA6C29] size-20 rounded-full">
+                            <div class="flex flex-col items-center justify-center bg-[#EA6C29] size-25 rounded-full">
                         <?php elseif ($city['air']['ozone'] <= 180) : ?> 
-                            <div class="flex flex-col items-center justify-center bg-[#F01F1F] size-20 rounded-full">
+                            <div class="flex flex-col items-center justify-center bg-[#F01F1F] size-25 rounded-full">
                         <?php elseif ($city['air']['ozone'] > 180) : ?> 
-                            <div class="flex flex-col items-center justify-center bg-[#AA24CC] size-20 rounded-full">
+                            <div class="flex flex-col items-center justify-center bg-[#AA24CC] size-25 rounded-full">
                         <?php endif ?>
                             <p class="text-lg"><?php echo $city['air']['ozone']?></p>
                             <p class="text-lg">µg/m3</p>
