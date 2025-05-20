@@ -38,12 +38,12 @@ class API {
      * Récupération de la localisation de l'utilisateur grâce à son adresse IP
      * @return array-key Les coordonnées de l'utilisateur ou FALSE si une erreur s'est produite
      */
-    public static function getUserLocation($ipAdress){
+    public static function getUserLocation(){
 
         $json = file_get_contents('../secrets/api_keys.json');
         $apiKey = json_decode($json, true);
 
-        $url = "https://api.geoapify.com/v1/ipinfo?ip=$ipAdress&apiKey=".$apiKey['geoapify'];
+        $url = "https://api.geoapify.com/v1/ipinfo?&apiKey=".$apiKey['geoapify'];
 
         return self::execRequest($url);
 

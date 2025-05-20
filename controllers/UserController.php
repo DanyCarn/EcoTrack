@@ -24,6 +24,13 @@ class UserController {
      * @return void
      */
     public function openAddUserForm(){
+
+        //Redirige l'utilisateur sur le tableau de bord s'il est déjà connecté
+        if(isset($_SESSION['userConnected']) && $_SESSION['userConnected']){
+            header('Location: /dashboard');
+            exit;
+        }
+        
         View::render('form_addUser', title:'Création de compte');
     }
     
@@ -32,6 +39,12 @@ class UserController {
      * @return void
      */
     public function addUser() {
+
+        //Redirige l'utilisateur sur la page d'accueil si la méthode de requête n'est pas POST
+        if($_SERVER['REQUEST_METHOD'] !== 'POST'){
+            header('Location: /home');
+            exit;
+        }
 
         $users = $this->model->getAllUsers();
 
@@ -70,6 +83,13 @@ class UserController {
      * @return void
      */
     public function openConnectionForm(){
+
+        //Redirige l'utilisateur sur le tableau de bord s'il est déjà connecté
+        if(isset($_SESSION['userConnected']) && $_SESSION['userConnected']){
+            header('Location: /dashboard');
+            exit;
+        }
+
         View::render('form_connect', title:'Connexion');
     }
 
@@ -78,6 +98,12 @@ class UserController {
      * @return void
      */
     public function connect(){
+
+        //Redirige l'utilisateur sur la page d'accueil si la méthode de requête n'est pas POST
+        if($_SERVER['REQUEST_METHOD'] !== 'POST'){
+            header('Location: /home');
+            exit;
+        }
 
         $users = $this->model->getAllUsers();
 

@@ -17,6 +17,12 @@ require_once("../core/View.php");
      */
     public function showHome(){
 
+        //Redirige l'utilisateur sur le tableau de bord s'il est déjà connecté
+        if(isset($_SESSION['userConnected']) && $_SESSION['userConnected']){
+            header('Location: /dashboard');
+            exit;
+        }
+
         $userCoordinates = API::getUserLocation($_SERVER['REMOTE_ADDR']);
 
         $info = API::getAirInfo($userCoordinates['location']['latitude'], $userCoordinates['location']['longitude']);

@@ -23,6 +23,12 @@
       */
      public function showDashboard(){
 
+      //Redirige l'utilisateur sur le tableau de bord s'il est déjà connecté
+      if(!isset($_SESSION['userConnected']) || !$_SESSION['userConnected']){
+        header('Location: /home');
+        exit;
+      }
+
       $cities = $this->model->getUserCities($_SESSION['userId']);
 
       //Récupère et stocke les données de chaque ville

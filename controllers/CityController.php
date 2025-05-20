@@ -22,6 +22,13 @@ require_once "../core/View.php";
      * @return void
      */
     public function addCityForm(){
+
+        //Redirige l'utilisateur sur la page d'accueil s'il n'est pas connecté
+        if(!isset($_SESSION['userConnected']) || !$_SESSION['userConnected']){
+            header('Location: /home');
+            exit;
+        }
+
         $data['error'] = false;
         View::render('form_addCity', ['data'=>$data], 'Ajouter ville');
     }
@@ -31,6 +38,12 @@ require_once "../core/View.php";
      * @return void
      */
     public function addCity(){
+
+        //Redirige l'utilisateur sur la page d'accueil s'il n'est pas connecté
+        if((!isset($_SESSION['userConnected']) || !$_SESSION['userConnected']) || $_SERVER['REQUEST_METHOD'] !== 'POST'){
+            header('Location: /home');
+            exit;
+        }
 
         $coordinates = API::getCityCoordinates($_POST['city'], $_POST['country']);
 
@@ -74,7 +87,7 @@ require_once "../core/View.php";
     public function deleteCity(){
 
         //Si l'utilisateur n'est pas connecté, le renvoie à la page d'accueil
-        if (!isset($_SESSION['userConnected']) || !$_SESSION['userConnected']) {
+        if ((!isset($_SESSION['userConnected']) || !$_SESSION['userConnected']) || !isset($_GET['cityId'])) {
             header('Location: /home');
             exit;
         }
