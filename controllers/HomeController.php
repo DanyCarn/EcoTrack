@@ -25,12 +25,23 @@ require_once("../core/View.php");
 
         $userCoordinates = API::getUserLocation($_SERVER['REMOTE_ADDR']);
 
-        $info = API::getAirInfo($userCoordinates['location']['latitude'], $userCoordinates['location']['longitude']);
 
-        // Création d'un tableau de données à passer en paramètre à la vue
-        $data=array();
-        $data[0]=$userCoordinates;
-        $data[1]=$info;
+        if($userCoordinates['isPrivate']){
+            $info = null;
+        } else{
+            $info = API::getAirInfo($userCoordinates['location']['latitude'], $userCoordinates['location']['longitude']);
+        }
+
+        if (!isset($info) || $info['air'] == null || $info['weather'] == null){
+            $data = null;
+        } else {
+
+            // Création d'un tableau de données à passer en paramètre à la vue
+            $data=array();
+            $data[0]=$userCoordinates;
+            $data[1]=$info;
+        }
+
 
         View::render('home', ['data' => $data]);
     }
