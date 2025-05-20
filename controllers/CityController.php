@@ -67,5 +67,23 @@ require_once "../core/View.php";
         View::render('form_addCity', ['data'=>$data], 'Ajouter ville');
     }
 
+    /**
+     * Supprime une ville de la liste de villes de l'utilsiateur
+     * @return void
+     */
+    public function deleteCity(){
+
+        //Si l'utilisateur n'est pas connecté, le renvoie à la page d'accueil
+        if (!isset($_SESSION['userConnected']) || !$_SESSION['userConnected']) {
+            header('Location: /home');
+            exit;
+        }
+
+        $this->model->UnlinkUser($_SESSION['userId'], $_GET['cityId']);
+
+        header('Location: /dashboard');
+        exit;
+    }
+
  }
 ?>

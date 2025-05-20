@@ -25,10 +25,13 @@
 
       $cities = $this->model->getUserCities($_SESSION['userId']);
 
+      //Récupère et stocke les données de chaque ville
       for ($i = 0; $i<count($cities); $i++) {
         $data[$i] = API::getAirInfo($cities[$i]['latitude'], $cities[$i]['longitude']);
         $data[$i]['name'] = $cities[$i]['nom'];
         $data[$i]['id'] = $cities[$i]['region_id'];
+        $data[$i]['lat'] = $cities[$i]['latitude'];
+        $data[$i]['lon'] = $cities[$i]['longitude'];
       }
 
       View::render('dashboard', $data,  'Tableau de bord');

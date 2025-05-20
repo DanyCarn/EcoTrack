@@ -60,5 +60,24 @@
 
         return $this->queryPrepareExecute($binds, $query);
     }
+
+    /**
+     * Supprime l'entrée dans la base de données qui lie un utilisateur à une ville
+     * @param mixed $userId Id de l'utilisateur
+     * @param mixed $cityId Id de la ville
+     * @return bool Résultat de la requête
+     */
+    public function UnlinkUser($userId, $cityId){
+
+        $query = "DELETE FROM t_enregistrer WHERE utilisateur_id = :userId AND region_id = :cityId";
+
+        $binds = ['userId'=>$userId, 'cityId'=>$cityId];
+
+        if(!$this->queryPrepareExecute($binds, $query)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
  }
 ?>

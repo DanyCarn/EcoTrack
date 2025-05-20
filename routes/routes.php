@@ -62,6 +62,9 @@ switch ($route) {
     case "addCity":
         $city->addCity();
         break;
+    case "deleteCity":
+        $city->deleteCity();
+        break;
     default:
         $home->showHome();
 }
