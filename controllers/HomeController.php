@@ -26,14 +26,19 @@ require_once("../core/View.php");
         $userCoordinates = API::getUserLocation($_SERVER['REMOTE_ADDR']);
 
 
-        if($userCoordinates['isPrivate']){
+        if(!isset($userCoordinates) || isset($userCoordinates['isPrivate'])){
             $info = null;
         } else{
             $info = API::getAirInfo($userCoordinates['location']['latitude'], $userCoordinates['location']['longitude']);
         }
 
         if (!isset($info) || $info['air'] == null || $info['weather'] == null){
-            $data = null;
+            if(!isset($userCoordinates['isPrivate'])){
+                $data['0'] = $userCoordinates;
+            } else {
+
+                $data = null;
+            }
         } else {
 
             // Création d'un tableau de données à passer en paramètre à la vue

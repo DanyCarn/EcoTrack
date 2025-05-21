@@ -6,6 +6,7 @@
  * Description: Contrôleur du tableau de bord
  */
 
+ error_reporting(E_ALL ^ E_WARNING ^ E_NOTICE);
  require_once "../models/Dashboard.php";
  require_once "../core/View.php";
  require_once "../models/API.php";
