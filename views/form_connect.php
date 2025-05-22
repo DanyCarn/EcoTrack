@@ -5,6 +5,8 @@
  * Date: 14.05.2025
  * Description: Formulaire de connexion
  */
+
+ $error = $data['error'];
 ?>
 
 <div class="flex flex-col items-center">
@@ -22,9 +24,9 @@
         <input type="submit" value="Se connecter" class="border-1 rounded-lg m-6 w-40 p-2 bg-[#69A33D] hover:bg-[#587D3C] hover:cursor-pointer text-xl">
     </form>
 
-    <?php if ($_GET['route'] == 'connectFormUserNotFound') :?>
+    <?php if ($error == 'userError') :?>
         <p class="text-red-500 text-lg">L'utilisateur n'a pas été trouvé.</p>
-    <?php elseif ($_GET['route'] == 'connectFormPasswordError') :?>
+    <?php elseif ($error == 'passwordError') :?>
         <p class="text-red-500 text-lg">Mot de passe incorrect.</p>
     <?php endif;?>
 

@@ -6,6 +6,7 @@
  * Description: Formulaire de création d'utilisateur
  */
 
+$error = $data['error'];
 ?>
 <div class="flex flex-col items-center">
     <form action="/addUser" method="POST" class="flex flex-col items-center">
@@ -28,12 +29,12 @@
         <input type="submit" value="Créer un compte" class="border-1 rounded-lg m-6 w-40 p-2 bg-[#69A33D] hover:bg-[#587D3C] hover:cursor-pointer text-xl">
     </form>
 
-    <?php if ($_GET['route'] == 'addUserPasswordError') :?>
+    <?php if ($error == "passwordError") :?>
         <p class="text-red-500 text-lg">Les deux mots de passe ne correspondent pas.</p>
-    <?php elseif ($_GET['route'] == 'addUserError') :?>
+    <?php elseif ($error == "error") :?>
         <p class="text-red-500 text-lg">Une erreur est survenue. Veuillez réessayer.</p>
         <p class="text-red-500 text-lg">(Aide: le nom d'utilisateur doit faire moins de 255 caractères.)</p>
-    <?php elseif ($_GET['route'] == 'addUserExists') :?>
+    <?php elseif ($error == 'userExists') :?>
         <p class="text-red-500 text-lg">Ce nom d'utilisateur existe déjà</p>
     <?php endif;?>
 

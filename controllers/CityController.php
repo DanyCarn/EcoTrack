@@ -45,7 +45,18 @@ require_once "../core/View.php";
             exit;
         }
 
-        $coordinates = API::getCityCoordinates($_POST['city'], $_POST['country']);
+        //Remplacement des caractères spéciaux par des valeurs lisibles par l'API de localisation
+        $city = str_replace(' ', '%20', $_POST['city']);
+        $city = str_replace('é', '%C3%A9', $city);
+        $city = str_replace('è', '%C3%A8', $city);
+        $city = str_replace('ç', '%C3%A7', $city);
+
+        $country = str_replace(' ', '%20', $_POST['country']);
+        $country = str_replace('é', '%C3%A9', $country);
+        $country = str_replace('è', '%C3%A8', $country);
+        $country = str_replace('ç', '%C3%A7', $country);
+
+        $coordinates = API::getCityCoordinates($city, $country);
 
         //Si la requête réussi renvoie sur le tableau de bord, sinon, retourne sur le formulaire indiquant une erreur
         if (isset($coordinates[0])) {
@@ -78,6 +89,7 @@ require_once "../core/View.php";
 
         $data['error'] = true;
         View::render('form_addCity', ['data'=>$data], 'Ajouter ville');
+        exit;
     }
 
     /**

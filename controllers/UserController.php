@@ -32,6 +32,7 @@ class UserController {
         }
         
         View::render('form_addUser', title:'Création de compte');
+        exit;
     }
     
     /**
@@ -51,7 +52,10 @@ class UserController {
         //Vérifie que l'identifiant n'existe pas déjà. Si il existe déjà, l'utilisateur doit en choisir un autre
         foreach ($users as $user) {
             if ($user['identifiant'] == $_POST['username']) {
-                header('Location: addUserExists');
+
+                //Redirectionau formulaire si le nom d'utilisateur existe déjà
+                $data['error'] = 'userExists';
+                View::render('form_addUser', ['data'=>$data], 'Création de compte' );
                 exit;
             } else {
                 continue;
@@ -65,13 +69,18 @@ class UserController {
             $hashedpassword = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
             if ($this->model->addUser($username, $hashedpassword) == false) {
-                header('Location: /addUserError');
+
+                $data['error'] = 'error';
+                View::render('form_addUser', ['data'=>$data], 'Création de compte' );
+                exit;
             } else {
                 header('Location: /home');
             }
 
         } else {
-            header('Location: /addUserPasswordError');
+            $data['error'] = 'passwordError';
+            View::render('form_addUser', ['data'=>$data], 'Création de compte' );
+            exit;
         }
 
     }
@@ -91,6 +100,7 @@ class UserController {
         }
 
         View::render('form_connect', title:'Connexion');
+        exit;
     }
 
     /**
@@ -120,7 +130,8 @@ class UserController {
                     exit;
 
                 } else {
-                    header('Location: /connectFormPasswordError');
+                    $data['error'] = 'passwordError';
+                    View::render('form_connect', ['data'=>$data], 'Connexion' );
                     exit;
                 }
 
@@ -128,7 +139,9 @@ class UserController {
                 continue;
             }
         }
-        header('Location: /connectFormUserNotFound');
+
+        $data['error'] = 'userError';
+        View::render('form_connect', ['data'=>$data], 'Connexion' );
         exit;
     }
 

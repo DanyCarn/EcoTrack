@@ -29,26 +29,11 @@ switch ($route) {
     case 'addUser':
         $user->addUser();
         break;
-    case 'addUserError':
-        $user->openAddUserForm();
-        break;
-    case 'addUserPasswordError':
-        $user->openAddUserForm();
-        break;
-    case 'addUserExists':
-        $user->openAddUserForm();
-        break;
     case 'connectForm':
         $user->openConnectionForm();
         break;
     case 'connect':
         $user->connect();
-        break;
-    case 'connectFormUserNotFound':
-        $user->openConnectionForm();
-        break;
-    case 'connectFormPasswordError':
-        $user->openConnectionForm();
         break;
     case 'disconnect':
         $user->disconnect();
@@ -68,3 +53,5 @@ switch ($route) {
     default:
         $home->showHome();
 }
+
+?>
