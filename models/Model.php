@@ -20,7 +20,14 @@
      * @return bool|PDOStatement Le résultat de la requête
      */
     protected function querySimpleExecute($query) {
-        return $this->db->query($query);
+        try{
+            $req = $this->db->query($query);
+        } catch(PDOException) {
+            return false;
+        }
+
+        return $req;
+
     }
 
     /**
@@ -30,15 +37,16 @@
      * @return bool|PDOStatement Le résultat de la requête
      */
     protected function queryPrepareExecute($binds, $query){
+        try {
         $req = $this->db->prepare($query);
 
         foreach ($binds as $bind=>$value){
             $req->bindValue($bind, $value);
         }
 
-        try {
-            $req->execute();
-        } catch (PDOException $e) {
+        $req->execute();
+
+        } catch (PDOException) {
             return false;
         }
         

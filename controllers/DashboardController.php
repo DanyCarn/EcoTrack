@@ -31,6 +31,7 @@
       }
 
       $cities = $this->model->getUserCities($_SESSION['userId']);
+      $data = array();
 
       //Récupère et stocke les données de chaque ville
       for ($i = 0; $i<count($cities); $i++) {

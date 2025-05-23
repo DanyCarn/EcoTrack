@@ -25,6 +25,7 @@ include_once "../models/Model.php";
         $result = $this->queryPrepareExecute($binds, $query);
 
         return $result;
+
     }
 
         /**

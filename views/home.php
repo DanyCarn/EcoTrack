@@ -15,7 +15,7 @@
  }
 ?>
 
-<div class="flex flex-col items-center">
+<div class="justify-self-center flex flex-col items-center">
 
     <?php if (isset($userCoordinates)) : ?>
         <h2 class="text-2xl md:text-4xl p-4">Qualité de l'air à <?=$userCoordinates['city']['name'] ?></h2>
@@ -125,6 +125,17 @@
     </div>
     <p class="text-xl md:text-3xl m-8">Connectez-vous afin d'avoir des informations sur d'autres villes</p>
 
+    <div class="justify-self-start border-1 rounded-lg mt-5 mb-5 p-2">
+        <p class="text-lg underline justify-self-center">Glossaire</p>
+        <p>IQA : Indice de qualité de l'air</p>
+        <p>PM 2.5 : Particules fines de moins de 2,5 µm</p>
+        <p>PM 10 : Particules fines de moins de 10 µm</p>
+        <p>NO2 : Dioxyde d'azote</p>
+        <p>O3 : Ozone</p>
+    </div>
+
     <a href="/addUserForm" class="md:hidden text-xl border rounded-xl p-1 bg-[#69A33D] hover:bg-[#587D3C]">Créer un compte</a>
     <a href="/connectForm" class="md:hidden text-xl border rounded-xl p-1 bg-[#69A33D] hover:bg-[#587D3C] mt-7">Se connecter</a>
+
+    
 </div>

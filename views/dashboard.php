@@ -164,7 +164,7 @@
                 </div>
             </div>
 
-            <a href="/deleteCity&cityId=<?=$city['id']?>" class="bg-[#F94130] hover:bg-[#D5382A] border-1 rounded-lg w-fit text-xl self-end mr-5 mb-1 p-1">Supprimer</a>
+            <a href="/deleteCity&cityId=<?=$city['id']?>" class="bg-[#F94130] hover:bg-[#D5382A] border-1 rounded-lg w-fit text-xl self-end mr-5 mb-4 p-1">Supprimer</a>
         </div>
     <?php endforeach;?>
 
@@ -182,6 +182,10 @@
 
     <!-- Source: https://leafletjs.com/ -->
     <div id="map" class="h-9/10 md:w-9/10 p-40 md:p-80 mb-20"></div>
+
+    <div class="flex justify-around border-t-1 w-full">
+        <p>IQA : Indice de qualité de l'air ; PM 2.5 : Particules fines de moins de 2,5 µm ; PM 10 : Particules fines de moins de 10 µm ; NO2 : Dioxyde d'azote ; O3 : Ozone</p>
+    </div>
 
     <script>
 
