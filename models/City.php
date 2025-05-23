@@ -79,5 +79,32 @@
             return true;
         }
     }
+
+    /**
+     * Supprime une ville de la base de données
+     * @param mixed $cityId L'id de la ville
+     * @return bool Le résultat de la requête. True si réussite, False si échec
+     */
+    public function deleteCity($cityId){
+
+        $query = "DELETE FROM t_region WHERE region_id = :cityId";
+
+        $binds = ['cityId'=>$cityId];
+
+        if(!$this->queryPrepareExecute($binds, $query)){
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public function getLinks($cityId) {
+
+        $query = "SELECT * FROM t_enregistrer WHERE region_id = :cityId";
+
+        $binds = ['cityId'=>$cityId];
+
+        return $this->formatData($this->queryPrepareExecute($binds, $query));
+    }
  }
 ?>

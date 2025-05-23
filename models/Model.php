@@ -46,8 +46,8 @@
 
         $req->execute();
 
-        } catch (PDOException) {
-            return false;
+        } catch (PDOException $e) {
+            return $e;
         }
         
         return $req;

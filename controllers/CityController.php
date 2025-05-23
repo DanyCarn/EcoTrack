@@ -98,6 +98,11 @@ require_once "../core/View.php";
 
         $this->model->UnlinkUser($_SESSION['userId'], $_GET['cityId']);
 
+        //Supprime la ville si c'était le dernier utilisateur à avoir la ville dans son tableau de bord
+        if(empty($this->model->getLinks($_GET['cityId']))){
+            $this->model->deleteCity($_GET['cityId']);
+        }
+
         header('Location: /dashboard');
         exit;
     }
