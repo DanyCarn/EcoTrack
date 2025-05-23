@@ -98,6 +98,10 @@
         }
     }
 
+    /**
+     * Récupère les enregistrements d'un ville
+     * @param mixed $cityId L'id de la ville
+     */
     public function getLinks($cityId) {
 
         $query = "SELECT * FROM t_enregistrer WHERE region_id = :cityId";
